@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: ./.docker/Dockerfile.${DOCKER_IMG}
-    image: wordpress:latest
+    image: wordpress:mars
     container_name: wordpress
     depends_on:
       - mysql
