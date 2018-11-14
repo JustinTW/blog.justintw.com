@@ -29,7 +29,7 @@ services:
     volumes:
       - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/cache:/data/cache:rw
-
+      - ./src:/var/www/html/wp-content/themes/marsmedia:rw
 networks:
   default:
     external:

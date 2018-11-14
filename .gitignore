@@ -3,3 +3,4 @@ Thumbs.db
 .docker/data/shared/*
 .docker/data/cache/*
 .docker/data/mysql/*
+src/*
