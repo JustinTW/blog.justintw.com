@@ -1,0 +1,19 @@
+FROM wordpress:latest
+
+ADD .docker/init-scripts /sbin/init-scripts
+RUN chmod +x /sbin/init-scripts/*
+
+ADD requirements /tmp/reqs
+
+RUN apt-get update && apt-get install -q -y --force-yes --fix-missing \
+  $(grep -vE "^\s*#" /tmp/reqs/apt/base | tr "\n" " ") && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
+ADD requirements /tmp/reqs
+RUN apt-get update && apt-get install -q -y --force-yes --fix-missing \
+  $(grep -vE "^\s*#" /tmp/reqs/apt/general | tr "\n" " ") && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -1,4 +1,4 @@
-# Docker environment for NodeJS Project
+# Docker environment for Wordpress Project
 
 ## Usage
 
