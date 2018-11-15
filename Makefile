@@ -53,7 +53,9 @@ ensure-env-alive:
 	@./scripts/bash/main ensure-env-alive
 
 clean: ## Clean the generated/compiles files
-	$(EXEC) make clean
+	@\rm -rf .docker/data/mysql
+	@echo 'clean mysql data success !!'
+	@echo 'please restart docker by typing: make up'
 
 version: ## output to version
 	@echo $(VERSION)
