@@ -29,6 +29,7 @@ services:
     volumes:
       - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/cache:/data/cache:rw
+      # - ./.docker/data/shared/wp-config.php:/var/www/html/wp-config.php:rw
       - ./src:/var/www/html/wp-content/themes/marsmedia:rw
 networks:
   default:
