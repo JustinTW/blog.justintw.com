@@ -53,7 +53,7 @@ ensure-env-alive:
 	@./scripts/bash/main ensure-env-alive
 
 clean: ## Clean the generated/compiles files
-	@\rm -rf .docker/data/mysql
+	@sudo \rm -rf .docker/data/wp-mysql
 	@echo 'clean mysql data success !!'
 	@echo 'please restart docker by typing: make up'
 

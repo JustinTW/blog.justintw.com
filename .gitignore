@@ -2,5 +2,5 @@
 Thumbs.db
 .docker/data/shared/*
 .docker/data/cache/*
-.docker/data/mysql/*
+.docker/data/wp-mysql/*
 src/*

@@ -1,16 +1,29 @@
 version: '3'
 
 services:
-  mysql:
+  wp-mysql:
     image: mysql:5.7
-    container_name: mysql
+    container_name: wp-mysql
     hostname: ${DOCKER_IMG}
     env_file:
       - ./.env/cache.env
       - ./.env/config.env
       - ./.env/deploy.env
     volumes:
-      - ./.docker/data/mysql:/var/lib/mysql:rw
+      - ./.docker/data/wp-mysql:/var/lib/mysql:rw
+  wp-pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: wp-pma
+    hostname: wp-pma
+    volumes:
+      - ./.docker/data/shared:/data/shared:rw
+      - ./.docker/data/wp-pma/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php:rw
+    env_file:
+      - ./.env/cache.env
+      - ./.env/config.env
+      - ./.env/deploy.env
+    ports:
+      - 3080:80
   wordpress:
     build:
       context: .
@@ -18,7 +31,7 @@ services:
     image: wordpress:mars
     container_name: wordpress
     depends_on:
-      - mysql
+      - wp-mysql
     hostname: ${DOCKER_IMG}
     env_file:
       - ./.env/cache.env
@@ -29,8 +42,8 @@ services:
     volumes:
       - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/cache:/data/cache:rw
-      # - ./.docker/data/shared/wp-config.php:/var/www/html/wp-config.php:rw
-      - ./src:/var/www/html/wp-content/themes/marsmedia:rw
+      # - ./.docker/data/wp/wp-config.php:/var/www/html/wp-config.php:rw
+      - ./src/wp-content:/var/www/html/wp-content:rw
 networks:
   default:
     external:
