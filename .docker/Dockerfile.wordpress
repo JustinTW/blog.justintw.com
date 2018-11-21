@@ -1,4 +1,4 @@
-FROM wordpress:latest
+FROM wordpress:php5.6-apache
 
 ADD .docker/init-scripts /sbin/init-scripts
 RUN chmod +x /sbin/init-scripts/*
