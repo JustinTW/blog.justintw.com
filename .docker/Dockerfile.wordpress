@@ -1,4 +1,4 @@
-FROM wordpress:php5.6-apache
+FROM wordpress:4.9.8-php7.2-apache
 
 ADD .docker/init-scripts /sbin/init-scripts
 RUN chmod +x /sbin/init-scripts/*
@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -q -y --force-yes --fix-missing \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+# Install NodeJS
+# RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 ADD requirements /tmp/reqs
 RUN apt-get update && apt-get install -q -y --force-yes --fix-missing \

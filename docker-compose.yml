@@ -10,6 +10,7 @@ services:
       - ./.env/config.env
       - ./.env/deploy.env
     volumes:
+      - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/wp-mysql:/var/lib/mysql:rw
   wp-pma:
     image: phpmyadmin/phpmyadmin
@@ -23,7 +24,7 @@ services:
       - ./.env/config.env
       - ./.env/deploy.env
     ports:
-      - 3080:80
+      - 8081:80
   wordpress:
     build:
       context: .
@@ -38,11 +39,21 @@ services:
       - ./.env/config.env
       - ./.env/deploy.env
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/cache:/data/cache:rw
-      # - ./.docker/data/wp/wp-config.php:/var/www/html/wp-config.php:rw
+      - ./.docker/data/wp/phpinfo.php:/var/www/html/phpinfo.php:rw
+      - ./.docker/data/wp/modules/bz2.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/bz2.so:rw
+      - ./.docker/data/wp/modules/calendar.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/calendar.so:rw
+      - ./.docker/data/wp/modules/exif.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/exif.so:rw
+      - ./.docker/data/wp/modules/gettext.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/gettext.so:rw
+      - ./.docker/data/wp/modules/pdo_mysql.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/pdo_mysql.so:rw
+      - ./.docker/data/wp/modules/sockets.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/sockets.so:rw
+      - ./.docker/data/wp/modules/wddx.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/wddx.so:rw
+      - ./.docker/data/wp/modules/xsl.so:/usr/local/lib/php/extensions/no-debug-non-zts-20170718/xsl.so:rw
+      - ./.docker/data/wp/docker-php-ext-customize.ini:/usr/local/etc/php/conf.d/docker-php-ext-customize.ini:rw
+      - ./.docker/data/wp/docker-php-ext-debug.ini:/usr/local/etc/php/conf.d/docker-php-ext-debug.ini:rw
       - ./src/wp-content:/var/www/html/wp-content:rw
 networks:
   default:

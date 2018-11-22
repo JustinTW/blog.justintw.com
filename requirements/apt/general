@@ -1,4 +1,6 @@
 jq
 nasm
-nodejs
-yarn
+# nodejs
+# yarn
+
+mariadb-client

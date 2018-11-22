@@ -1,6 +1,8 @@
 .DS_Store
 Thumbs.db
-.docker/data/shared/*
+
 .docker/data/cache/*
+.docker/data/shared/*
+
 .docker/data/wp-mysql/*
 src/*

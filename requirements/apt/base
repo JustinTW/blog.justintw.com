@@ -1,1 +1,6 @@
 gnupg2
+wget
+apt-transport-https
+lsb-release
+ca-certificates
+libxslt1-dev
