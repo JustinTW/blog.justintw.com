@@ -29,7 +29,7 @@ docker_remove_container (){
     print_warning "Destroy Container: "; echo $container
     docker ps | grep $container > /dev/null 2>&1
     if [ $? -eq 0 ]; then
-      print_info "stop: "; docker stop -t 3 $container  || true
+      print_info "stop: "; docker stop $container  || true
     fi
 
     docker ps -a | grep $container > /dev/null 2>&1
