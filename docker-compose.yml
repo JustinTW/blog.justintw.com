@@ -2,6 +2,7 @@ version: '3'
 
 services:
   wp-mysql:
+    # restart: always
     image: mysql:5.7
     container_name: wp-mysql
     hostname: ${DOCKER_IMG}
@@ -13,6 +14,7 @@ services:
       - ./.docker/data/shared:/data/shared:rw
       - ./.docker/data/wp-mysql:/var/lib/mysql:rw
   wp-pma:
+    # restart: always
     image: phpmyadmin/phpmyadmin
     container_name: wp-pma
     hostname: wp-pma
@@ -26,6 +28,7 @@ services:
     ports:
       - 8081:80
   wordpress:
+    # restart: always
     build:
       context: .
       dockerfile: ./.docker/Dockerfile.${DOCKER_IMG}
