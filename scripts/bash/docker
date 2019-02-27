@@ -2,8 +2,8 @@
 
 docker_chown (){
   sudo mkdir -p ./.docker/data ./src
-  sudo chown $USER: ./.docker/data -R
-  sudo chown $USER: ./src -R
+  sudo chown  -R $USER: ./.docker/data
+  sudo chown  -R $USER: ./src
 }
 
 docker_create_network (){

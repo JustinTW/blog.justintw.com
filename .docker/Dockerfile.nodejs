@@ -9,9 +9,13 @@ RUN apt-get update && apt-get install -q -y --force-yes --fix-missing \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD requirements/yarn /tmp/yarn
-RUN yarn global add $(grep -vE "^\s*#" /tmp/yarn  | tr "\n" " ") && \
-  rm -rf /data/cache/yarn/* /tmp/yarn
+ADD requirements/npm /tmp/npm
+RUN npm i -g $(grep -vE "^\s*#" /tmp/npm  | tr "\n" " ") && \
+  rm -rf /data/cache/npm/* /tmp/npm
+
+ADD src/requirements/npm /tmp/npm
+RUN npm i -g $(grep -vE "^\s*#" /tmp/npm  | tr "\n" " ") && \
+  rm -rf /data/cache/npm/* /tmp/npm
 
 WORKDIR /src
 
